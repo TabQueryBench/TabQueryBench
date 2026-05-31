@@ -76,7 +76,7 @@ $shards = @(
     },
     @{
         suffix = "e"
-        datasets = "m5,n4,c12,c20,c13,c5,n7,c6,c3"
+        datasets = "m5,n4,c12,c1,c13,c5,n7,c6,c3"
     },
     @{
         suffix = "f"

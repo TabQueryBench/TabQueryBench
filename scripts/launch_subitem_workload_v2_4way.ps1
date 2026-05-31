@@ -75,7 +75,7 @@ $shards = switch ($LineVersion) {
         @(
             @{ suffix = "a"; datasets = "c2,c6,c10,c14,c18,m1,m6,m10,n1,n5,n9,n14,n18" },
             @{ suffix = "b"; datasets = "c3,c7,c11,c15,c19,m2,m7,m11,n2,n6,n10,n15,n19" },
-            @{ suffix = "c"; datasets = "c4,c8,c12,c16,c20,m4,m8,m12,n3,n7,n11,n16,n20" },
+            @{ suffix = "c"; datasets = "c4,c8,c12,c16,c1,m4,m8,m12,n3,n7,n11,n16,n20" },
             @{ suffix = "d"; datasets = "c5,c9,c13,c17,m5,m9,n4,n8,n12,n17" }
         )
     }
