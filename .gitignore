@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+
+# Local run outputs and heavy artifacts.
+output*/
+synthetic_data/
+synthetic_model_weights/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.safetensors

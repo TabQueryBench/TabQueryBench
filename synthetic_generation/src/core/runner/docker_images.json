@@ -1,0 +1,59 @@
+{
+  "images": {
+    "arf": {
+      "image": "tabquerybench/arf:latest",
+      "env_override": "BENCHMARK_ARF_IMAGE",
+      "gpu": true
+    },
+    "bayesnet": {
+      "image": "tabquerybench/bayesnet:latest",
+      "env_override": "BENCHMARK_BAYESNET_IMAGE",
+      "gpu": true
+    },
+    "ctgan": {
+      "image": "tabquerybench/ctgan:latest",
+      "env_override": "BENCHMARK_CTGAN_IMAGE",
+      "gpu": true
+    },
+    "forestdiffusion": {
+      "image": "tabquerybench/forestdiffusion:latest",
+      "env_override": "BENCHMARK_FORESTDIFFUSION_IMAGE",
+      "gpu": true
+    },
+    "realtabformer": {
+      "image": "tabquerybench/realtabformer:latest",
+      "env_override": "BENCHMARK_REALTABFORMER_IMAGE",
+      "gpu": true
+    },
+    "tabbyflow": {
+      "image": "tabquerybench/tabdiff-tabbyflow:latest",
+      "env_override": "BENCHMARK_TABBYFLOW_IMAGE",
+      "gpu": true
+    },
+    "tabddpm": {
+      "image": "tabquerybench/tabddpm:latest",
+      "env_override": "BENCHMARK_TABDDPM_IMAGE",
+      "gpu": true
+    },
+    "tabdiff": {
+      "image": "tabquerybench/tabdiff-tabbyflow:latest",
+      "env_override": "BENCHMARK_TABDIFF_IMAGE",
+      "gpu": true
+    },
+    "tabpfgen": {
+      "image": "tabquerybench/tabpfgen:latest",
+      "env_override": "BENCHMARK_TABPFGEN_IMAGE",
+      "gpu": true
+    },
+    "tabsyn": {
+      "image": "tabquerybench/tabsyn:latest",
+      "env_override": "BENCHMARK_TABSYN_IMAGE",
+      "gpu": true
+    },
+    "tvae": {
+      "image": "tabquerybench/tvae:latest",
+      "env_override": "BENCHMARK_TVAE_IMAGE",
+      "gpu": true
+    }
+  }
+}

@@ -1,2 +1,0 @@
-"""Tail breakdown analysis package."""
-
