@@ -16,6 +16,18 @@ Shared, cross-cutting material:
 - `docs/PIPELINE_OVERVIEW.md` — end-to-end pipeline and artifact contracts.
 - `website/` — local repository browser (`npm --prefix website run dev`).
 
+## Data Repository
+
+The released datasets, generated tables, query artifacts, scoring outputs, and
+other large benchmark assets are maintained in the Hugging Face dataset
+repository:
+
+- [TabQueryBench2026/TabQueryBench](https://huggingface.co/datasets/TabQueryBench2026/TabQueryBench)
+
+This GitHub repository contains the public source code and documentation. The
+large data and generated artifacts are intentionally kept in the Hugging Face
+repository rather than duplicated here.
+
 ## Python packages
 
 | Package | Location | Depends on |
