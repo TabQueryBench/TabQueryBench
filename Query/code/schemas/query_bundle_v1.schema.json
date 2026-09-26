@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tabquerybench.org/schemas/query_bundle_v1.schema.json",
+  "title": "TabQueryBench external query bundle",
+  "type": "object",
+  "required": ["schema_version", "manifest", "dataset", "queries", "skipped_templates"],
+  "properties": {
+    "schema_version": {"const": "tabquerybench.query_bundle.v1"},
+    "manifest": {
+      "type": "object",
+      "required": ["dataset_id", "inputs", "template_registry", "execution", "usage", "timing"],
+      "properties": {
+        "dataset_id": {"type": "string"},
+        "inputs": {"type": "object"},
+        "template_registry": {"type": "object"},
+        "execution": {"type": "object"},
+        "usage": {"type": "object", "required": ["network_calls", "llm_calls", "cost_usd"]},
+        "timing": {"type": "object", "required": ["started_at", "completed_at", "elapsed_seconds"]}
+      }
+    },
+    "dataset": {"type": "object", "required": ["columns"]},
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["query_id", "question", "sql", "output", "provenance"],
+        "properties": {
+          "query_id": {"type": "string"},
+          "question": {"type": "string"},
+          "sql": {"type": "string"},
+          "output": {"type": "object", "required": ["columns", "preview_rows"]},
+          "provenance": {"type": "object", "required": ["template_id", "bindings"]}
+        }
+      }
+    },
+    "skipped_templates": {"type": "array"}
+  }
+}

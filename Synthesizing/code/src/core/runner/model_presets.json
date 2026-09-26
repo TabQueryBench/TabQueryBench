@@ -1,0 +1,35 @@
+{
+  "description": "Named parameter presets for core.runner.runner --preset and core.runner.batch. CLI flags and already-set environment variables always win. 'smoke' checks that a dataset runs end-to-end on every model in a few minutes; 'default' uses each adapter's own defaults.",
+  "presets": {
+    "smoke": {
+      "_all": {"max_train_rows": 2000, "num_rows": 500},
+      "arf": {},
+      "bayesnet": {},
+      "ctgan": {"epochs": 5},
+      "forestdiffusion": {"epochs": 10, "env": {"FORESTDIFFUSION_N_T": "10", "FORESTDIFFUSION_DUPLICATE_K": "5", "FORESTDIFFUSION_MAX_CAT_LEVELS": "20", "FORESTDIFFUSION_XGB_NTHREAD": "8"}},
+      "realtabformer": {"epochs": 2},
+      "tabbyflow": {"epochs": 500},
+      "tabddpm": {"env": {"TABDDPM_STEPS": "2000"}},
+      "tabdiff": {"epochs": 500},
+      "tabpfgen": {"env": {"TABPFGEN_N_SGLD_STEPS": "200", "TABPFGEN_N_ESTIMATORS": "2"}},
+      "tabsyn": {"epochs": 200},
+      "tvae": {"epochs": 5}
+    },
+    "fast": {
+      "_all": {},
+      "tabdiff": {"epochs": 2000},
+      "tabbyflow": {"epochs": 2000},
+      "forestdiffusion": {
+        "env": {
+          "FORESTDIFFUSION_MAX_TRAIN_ROWS": "20000",
+          "FORESTDIFFUSION_DUPLICATE_K": "10",
+          "FORESTDIFFUSION_N_T": "20",
+          "FORESTDIFFUSION_XGB_NTHREAD": "10"
+        }
+      }
+    },
+    "default": {
+      "_all": {}
+    }
+  }
+}

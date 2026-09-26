@@ -1,15 +1,19 @@
-.DS_Store
+# Third-party raw source material is reproducible, but must not be included in
+# the Hugging Face dataset release. Curated normalization metadata and A-tier
+# SQL are tracked under Query/Reference/normalized/.
+/Query/Reference/downloads/
+/Query/Reference/extracted/
+/Query/Reference/checksums.json
 __pycache__/
 *.py[cod]
-*.log
-*.tmp
+/var/query-generation-jobs/
 
-# Local run outputs and heavy artifacts.
-output*/
-synthetic_data/
-synthetic_model_weights/
-*.pt
-*.pth
-*.ckpt
-*.pkl
-*.safetensors
+# Generated analysis artifacts are locally useful but must not be included in
+# the Hugging Face dataset release. Normalized A-tier SQL is tracked.
+/Query/Reference/normalized/artifacts/
+
+# Local compatibility symlinks for the pre-reorganization layout
+# (code/{Evaluation,data,logs}, raw_data, synthetic_data). Not part of the release.
+/code/
+/raw_data
+/synthetic_data

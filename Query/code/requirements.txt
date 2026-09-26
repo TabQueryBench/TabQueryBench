@@ -1,0 +1,12 @@
+langchain
+langgraph
+langchain-community
+langchain-openai
+requests
+pyyaml
+matplotlib
+numpy
+pandas
+fastapi
+uvicorn
+python-multipart

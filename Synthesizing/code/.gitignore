@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.log
+.home/
+.cache/
+.config/
+output*/
+workspace/

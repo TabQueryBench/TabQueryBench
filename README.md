@@ -1,64 +1,51 @@
 # TabQueryBench
 
-This repository contains the public code release for TabQueryBench.
+TabQueryBench evaluates tabular synthetic data by running workload-grounded SQL
+queries on real and synthetic tables and scoring how well the synthetic answers
+match the real ones. The repository is organized into three parts; each part
+keeps its own code inside its folder.
 
-The code is split into two top-level components:
+| Part | Contents |
+| --- | --- |
+| [`Synthesizing/`](Synthesizing/README.md) | Real datasets, synthetic data generation code, generated synthetic data |
+| [`Query/`](Query/README.md) | Query templates, template sources, released queries (V2–V9), query generation code, runs, and audits |
+| [`Scoring/`](Scoring/README.md) | Scoring standards (legacy → semantic → single-primary SPQ → sv2), scoring/evaluation code, and scoring results |
 
-- `query_benchmark/`: SQL/query generation, workload grounding, benchmark construction, and evaluation code.
-- `synthetic_generation/`: training and sampling code for the 11 tabular synthetic data generation models used by TabQueryBench.
+Shared, cross-cutting material:
 
-Large datasets, generated synthetic outputs, query artifacts, template libraries, model weights, and run logs are not stored in this GitHub repository. They are released through the linked Hugging Face repositories.
+- `docs/PIPELINE_OVERVIEW.md` — end-to-end pipeline and artifact contracts.
+- `website/` — local repository browser (`npm --prefix website run dev`).
 
-## Related Hugging Face Repositories
+## Python packages
 
-### Main Public Data Repository
-
-- [TabQueryBench2026/TabQueryBench](https://huggingface.co/datasets/TabQueryBench2026/TabQueryBench/tree/main)
-
-This repository contains the public non-code assets, including:
-
-- `raw_data/`: released raw tabular datasets
-- `synthetic_data/`: released synthetic tabular outputs
-- `Query/`: query artifacts organized by dataset
-- `Query_Templates/`: template library and supporting materials
-
-### Docker Images
-
-- [TabQueryBench2026/TabSyn-Docker](https://huggingface.co/datasets/TabQueryBench2026/TabSyn-Docker/tree/main)
-
-Use the Docker repository if you want prebuilt container assets for the tabular synthesis stack. The synthetic generation code also supports overriding every model image through `BENCHMARK_*_IMAGE` environment variables.
-
-## Repository Layout
-
-```text
-TabQueryBench/
-  query_benchmark/
-    src/        # SQL agent, benchmark construction, grounding, and evaluation packages
-    scripts/    # query benchmark and evaluation entrypoints
-    tests/      # lightweight validation scripts
-
-  synthetic_generation/
-    src/core/   # unified train/generate runner
-    src/models/ # 11 model adapters, shared postprocessing, and vendored model snapshots
-    synthetic_benchmark/ # vendored upstream sources used by selected adapters
-```
-
-## Typical Entry Points
-
-Query benchmark:
+| Package | Location | Depends on |
+| --- | --- | --- |
+| `tqb_query` | `Query/code/tqb_query` | — |
+| `tqb_scoring` | `Scoring/code/tqb_scoring` | `tqb_query` (added to `sys.path` automatically) |
+| generation runner (`core`, `models`) | `Synthesizing/code/src` | — |
 
 ```bash
-PYTHONPATH=query_benchmark python query_benchmark/scripts/run_benchmark_agent.py
-PYTHONPATH=query_benchmark python query_benchmark/scripts/run_benchmark_evaluation.py
+# query generation / query bundle API
+PYTHONPATH=Query/code python3 -m unittest discover -s Query/code/tests
+# scoring
+PYTHONPATH=Scoring/code python3 -m tqb_scoring.eval.analysis.runner --help
 ```
 
-Synthetic generation:
+Before the reorganization the code lived in a single `code/src` package
+(`src.*`). Module paths map as follows: `src.eval.subitem_workload_v2`,
+`src.eval.analytics_contract`, `src.eval.token_usage_v1` and
+`src.{agent,benchmark,config,data,db,logging,usage,query_generation,workload_grounding}`
+→ `tqb_query.*`; `src.eval.*` and `src.evaluation.*` → `tqb_scoring.eval.*` and
+`tqb_scoring.evaluation.*`.
 
-```bash
-PYTHONPATH=synthetic_generation/src python -m core.runner.runner --model ctgan --dataset c1 --train --generate
-```
+## Local compatibility links
 
-See the component READMEs for more details:
+Existing external jobs (for example SQLagent evaluation and scripts under
+`/tmp`) reference the old paths. The following untracked symlinks are kept
+locally and ignored by git:
 
-- [query_benchmark/README.md](query_benchmark/README.md)
-- [synthetic_generation/README.md](synthetic_generation/README.md)
+- `raw_data` → `Synthesizing/raw_data`
+- `synthetic_data` → `Synthesizing/synthetic_data`
+- `code/Evaluation` → `Scoring/results`
+- `code/data` → `Query/code/data`
+- `code/logs` → `Query/code/logs`
